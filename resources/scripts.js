@@ -381,10 +381,10 @@ import {txtToHtml, htmlToTxt} from './parser.js';
 		<td>05</td>
 	</tr>
 </table>
-<a class="button header-one dark-blue" href="/lcars-database/index.html" onclick="beep0()"><span class="margin">Home</span></a>
-<a class="button header-two light-blue" href="/lcars-database/timeline/index.html" onclick="beep0()"><span class="margin">Timeline</span></a>
-<a class="button header-three red" href="/lcars-database/trek-analyzed/index.html" onclick="beep0()"><span class="margin">Trek Analyzed</span></a>
-<a class="button header-four light-gray" href="/lcars-database/trek-lore/index.html" onclick="beep0()"><span class="margin">Trek Lore</span></a>
+<a class="button header-one dark-blue" href="/lcars-database" onclick="beep0()"><span class="margin">Home</span></a>
+<a class="button header-two light-blue" href="/lcars-database/timeline" onclick="beep0()"><span class="margin">Timeline</span></a>
+<a class="button header-three red" href="/lcars-database/trek-analyzed" onclick="beep0()"><span class="margin">Trek Analyzed</span></a>
+<a class="button header-four light-gray" href="/lcars-database/trek-lore" onclick="beep0()"><span class="margin">Trek Lore</span></a>
 <div class="bar number-one dark-blue"></div>
 <div class="bar number-two dark-blue"></div>
 <div class="bar-break light-gray"></div>
