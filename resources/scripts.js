@@ -1,7 +1,7 @@
 import {txtToHtml, htmlToTxt} from './parser.js';
 (async () => {
-	const currentPage = location.pathname.replace(/^\/LCARS-database\/(.*)\.html$/, '$1');
-	const pageName = currentPage === '/LCARS-database/' ? 'index' : currentPage;
+	const currentPage = location.pathname.replace(/^\/lcars-database\/(.*)\.html$/, '$1');
+	const pageName = currentPage === '/lcars-database/' ? 'index' : currentPage;
 	const pageSource = await fetch(`${pageName}.txt`);
 	const txt = await pageSource.text();
 	const contentArea = document.createElement('div');
