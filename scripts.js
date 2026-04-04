@@ -4,116 +4,102 @@ import {txtToHtml, htmlToTxt} from './parser.js';
 	const pageName = currentPage === '/LCARS-database/' ? 'index' : currentPage;
 	const pageSource = await fetch(`${pageName}.txt`);
 	const txt = await pageSource.text();
-	const pageHeading = document.createElement('h1');
+	const contentArea = document.createElement('div');
+	const pageHeading = document.createElement('h2');
 	const parserOutput = document.createElement('div');
+	const waveform = document.createElement('div');
+	const bracketOne = document.createElement('div');
+	const bracketTwo = document.createElement('div');
+	const panelColumnOne = document.createElement('div');
+	const panelColumnTwo = document.createElement('div');
+	const numberOfPanels = Math.round((screen.height - 5) / 130);
+	const blues = ['light-blue', 'dark-blue'];
+	const grays = ['light-gray', 'dark-gray'];
+	let digits = String(numberOfPanels).length;
+	digits = digits === 1 ? 2 : digits;
+
 	pageHeading.innerText = document.title;
 	parserOutput.id = 'parser-output';
+	parserOutput.classList.add('scrollbox');
 	parserOutput.innerHTML = txtToHtml(txt)
-	document.body.appendChild(pageHeading);
-	document.body.appendChild(parserOutput);
-})();
+	contentArea.classList.add('content-area');
+	contentArea.appendChild(pageHeading);
+	contentArea.appendChild(parserOutput);
+	bracketOne.classList.add('element-one');
+	bracketTwo.classList.add('element-two');
+	waveform.classList.add('waveform');
+	waveform.append(bracketOne);
 
-const contentArea = document.createElement('div');
-contentArea.classList.add('content-area');
-contentArea.innerHTML = document.body.innerHTML;
-document.body.innerHTML = '';
-
-const waveform = document.createElement('div');
-const bracketOne = document.createElement('div');
-const bracketTwo = document.createElement('div');
-
-bracketOne.classList.add('element-one');
-bracketTwo.classList.add('element-two');
-waveform.classList.add('waveform');
-waveform.append(bracketOne);
-
-for (let i = 0; i < 15; i++){
-	const line = document.createElement('div');
-	line.classList.add('line');
-	waveform.append(line);
-}
-
-waveform.append(bracketTwo);
-document.body.append(waveform);
-
-const panelColumnOne = document.createElement('div');
-const panelColumnTwo = document.createElement('div');
-const numberOfPanels = Math.round((screen.height - 5) / 130);
-const blues = ['light-blue', 'dark-blue'];
-const grays = ['light-gray', 'dark-gray'];
-
-let digits = String(numberOfPanels).length;
-digits = digits === 1 ? 2 : digits;
-panelColumnOne.classList.add('panel-column');
-panelColumnTwo.classList.add('panel-column');
-
-for (let i = 0; i < numberOfPanels; i++){
-	const panelOne = document.createElement('div');
-	const panelTwo = document.createElement('div');
-	const panelOneText = document.createElement('span');
-	const panelTwoText = document.createElement('span');
-	const prefix = String(i + 1).padStart(digits, 0);
-
-	let paletteOne;
-	let paletteTwo;
-
-	if (i < 2){
-		paletteOne = blues;
-		paletteTwo = blues;
-	} else if (i === 2){
-		paletteOne = blues;
-		paletteTwo = ['light-blue', 'light-gray'];
-	} else if (i === 3){
-		paletteOne = ['dark-blue', 'light-gray'];
-		paletteTwo = blues;
-	} else if (i % 7 === 1 || i % 7 === 3){
-		paletteOne = grays;
-		paletteTwo = blues;
-	} else if (i % 7 === 2 || i % 7 === 4 || i % 7 === 5){
-		paletteOne = blues;
-		paletteTwo = blues;
-	} else if (i % 7 === 6){
-		paletteOne = blues;
-		paletteTwo = grays;
-	} else if (!(i % 7)){
-		paletteOne = grays;
-		paletteTwo = grays;
+	for (let i = 0; i < 15; i++){
+		const line = document.createElement('div');
+		line.classList.add('line');
+		waveform.append(line);
 	}
 
-	const colorOne = paletteOne[r(paletteOne.length)];
-	const colorTwo = paletteTwo[r(paletteTwo.length)];
+	waveform.append(bracketTwo);
+	document.body.append(waveform);
+	panelColumnOne.classList.add('panel-column');
+	panelColumnTwo.classList.add('panel-column');
 
-	panelOne.classList.add(colorOne);
-	panelTwo.classList.add(colorTwo);
-	panelOneText.classList.add('margin');
-	panelTwoText.classList.add('margin');
-	panelOneText.innerText = i === 0 ? 'LCARS 40274' : prefix + '-' + r(10) + r(10) + r(10) + r(10) + r(10) + r(10);
-	panelTwoText.innerText = i === 0 ? 'LCARS 40274' : prefix + '-' + String(r(1000000)).padStart(6, 0);
-	panelOne.append(panelOneText);
-	panelTwo.append(panelTwoText);
-	panelColumnOne.append(panelOne);
-	panelColumnTwo.append(panelTwo);
-}
+	for (let i = 0; i < numberOfPanels; i++){
+		const panelOne = document.createElement('div');
+		const panelTwo = document.createElement('div');
+		const panelOneText = document.createElement('span');
+		const panelTwoText = document.createElement('span');
+		const prefix = String(i + 1).padStart(digits, 0);
 
-document.body.append(panelColumnOne);
-document.body.append(panelColumnTwo);
+		let paletteOne;
+		let paletteTwo;
 
-hideExcessPanels();
-addEventListener('resize', hideExcessPanels);
+		if (i < 2){
+			paletteOne = blues;
+			paletteTwo = blues;
+		} else if (i === 2){
+			paletteOne = blues;
+			paletteTwo = ['light-blue', 'light-gray'];
+		} else if (i === 3){
+			paletteOne = ['dark-blue', 'light-gray'];
+			paletteTwo = blues;
+		} else if (i % 7 === 1 || i % 7 === 3){
+			paletteOne = grays;
+			paletteTwo = blues;
+		} else if (i % 7 === 2 || i % 7 === 4 || i % 7 === 5){
+			paletteOne = blues;
+			paletteTwo = blues;
+		} else if (i % 7 === 6){
+			paletteOne = blues;
+			paletteTwo = grays;
+		} else if (!(i % 7)){
+			paletteOne = grays;
+			paletteTwo = grays;
+		}
 
-const siteHeading = document.createElement('h1');
-siteHeading.innerText = 'LCARS Database';
-document.body.append(siteHeading);
+		const colorOne = paletteOne[r(paletteOne.length)];
+		const colorTwo = paletteTwo[r(paletteTwo.length)];
 
+		panelOne.classList.add(colorOne);
+		panelTwo.classList.add(colorTwo);
+		panelOneText.classList.add('margin');
+		panelTwoText.classList.add('margin');
+		panelOneText.innerText = i === 0 ? 'LCARS 40274' : prefix + '-' + r(10) + r(10) + r(10) + r(10) + r(10) + r(10);
+		panelTwoText.innerText = i === 0 ? 'LCARS 40274' : prefix + '-' + String(r(1000000)).padStart(6, 0);
+		panelOne.append(panelOneText);
+		panelTwo.append(panelTwoText);
+		panelColumnOne.append(panelOne);
+		panelColumnTwo.append(panelTwo);
+	}
 
+	document.body.append(panelColumnOne);
+	document.body.append(panelColumnTwo);
 
+	hideExcessPanels();
+	addEventListener('resize', hideExcessPanels);
 
-
-
-document.body.append(contentArea);
-
-
-document.body.innerHTML += `
+	const siteHeading = document.createElement('h1');
+	siteHeading.innerText = 'LCARS Database';
+	document.body.append(siteHeading);
+	document.body.append(contentArea);
+	document.body.innerHTML += `
 <div class="button sidebar-1 left-facing red" onclick="beep0()"><span class="margin">03-975683</span></div>
 <div class="button sidebar-2 left-facing light-gray" onclick="beep0()"><span class="margin">04-765466</span></div>
 <div class="button sidebar-3 left-facing dark-blue" onclick="beep0()"><span class="margin">05-224353</span></div>
@@ -406,45 +392,45 @@ document.body.innerHTML += `
 <div class="bar-continued number-one light-gray"></div>
 <div class="bar-continued number-two light-blue"></div>
 <div class="marker"></div>
-<a href="legalities.html" class="left-facing copyrights button red" onclick="beep1()"><span class="margin">Legalities</span></a>
-`;
+<a href="legalities.html" class="left-facing copyrights button red" onclick="beep1()"><span class="margin">Legalities</span></a>`;
 
-const beepZero = new Audio('audio/beep-0.mp3');
-const beepOne = new Audio('audio/beep-1.mp3');
-const beepTwo = new Audio('audio/beep-2.mp3');
+	const beepZero = new Audio('audio/beep-0.mp3');
+	const beepOne = new Audio('audio/beep-1.mp3');
+	const beepTwo = new Audio('audio/beep-2.mp3');
 
-function beep0() {
-	beepZero.play();
-}
+	function beep0(){
+		beepZero.play();
+	}
 
-function beep1() {
-	beepOne.play();
-}
+	function beep1(){
+		beepOne.play();
+	}
 
-function beep2() {
-	beepTwo.play();
-}
+	function beep2(){
+		beepTwo.play();
+	}
 
-function stardateCalculator(selector){
-	document.querySelectorAll(selector).forEach(function(stardate){
-		const date = (selector === '.stardate') ? new Date(stardate.getAttribute('data-date')).getTime() : new Date().getTime();
-		stardate.innerHTML = Math.round(Math.log(date + 432043200000000000000) / Math.log(1.0000001));
-	});
-}
+	function stardateCalculator(selector){
+		document.querySelectorAll(selector).forEach(function(stardate){
+			const date = (selector === '.stardate') ? new Date(stardate.getAttribute('data-date')).getTime() : new Date().getTime();
+			stardate.innerHTML = Math.round(Math.log(date + 432043200000000000000) / Math.log(1.0000001));
+		});
+	}
 
-stardateCalculator('.stardate');
-stardateCalculator('.currentStardate');
-setInterval(stardateCalculator, 1000, '.currentStardate');
+	stardateCalculator('.stardate');
+	stardateCalculator('.currentStardate');
+	setInterval(stardateCalculator, 1000, '.currentStardate');
 
-function r(i){
-	return Math.floor(Math.random() * i);
-}
+	function r(i){
+		return Math.floor(Math.random() * i);
+	}
 
-function hideExcessPanels(){
-	const wantedPanelCount = Math.round((innerHeight - 5) / 130);
-	const wantedPanels = document.querySelectorAll(`.panel-column > div:not(:nth-child(${wantedPanelCount}) ~ div)`);
-	const excessPanels = document.querySelectorAll(`.panel-column > :nth-child(${wantedPanelCount}) ~ div`);
+	function hideExcessPanels(){
+		const wantedPanelCount = Math.round((innerHeight - 5) / 130);
+		const wantedPanels = document.querySelectorAll(`.panel-column > div:not(:nth-child(${wantedPanelCount}) ~ div)`);
+		const excessPanels = document.querySelectorAll(`.panel-column > :nth-child(${wantedPanelCount}) ~ div`);
 
-	wantedPanels.forEach(panel => panel.classList.remove('hidden'));
-	excessPanels.forEach(panel => panel.classList.add('hidden'));
-}
+		wantedPanels.forEach(panel => panel.classList.remove('hidden'));
+		excessPanels.forEach(panel => panel.classList.add('hidden'));
+	}
+})();
