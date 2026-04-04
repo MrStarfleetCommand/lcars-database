@@ -20,9 +20,8 @@ import {txtToHtml, htmlToTxt} from './parser.js';
 
 	pageHeading.innerText = document.title;
 	parserOutput.id = 'parser-output';
-	parserOutput.classList.add('scrollbox');
 	parserOutput.innerHTML = txtToHtml(txt)
-	contentArea.classList.add('content-area');
+	contentArea.classList.add('content-area', 'scrollbox');
 	contentArea.appendChild(pageHeading);
 	contentArea.appendChild(parserOutput);
 	bracketOne.classList.add('element-one');
