@@ -1,9 +1,7 @@
 import {txtToHtml, htmlToTxt} from './parser.js';
 (async () => {
-	const currentPage = location.pathname.replace(/^\/lcars-database\/(.*)\.html$/, '$1');
-	const pageName = currentPage === '/lcars-database/' ? 'index' : currentPage;
-	const pageSource = await fetch(`${pageName}.txt`);
-	const txt = await pageSource.text();
+	const sourcePage = `${location.pathname.replace(/\/+$/, '')}/index.html`.replace(/\.html(?:\/index\.html)?$/, '.txt');
+	const txt = await (await fetch(sourcePage)).text();
 	const contentArea = document.createElement('div');
 	const pageHeading = document.createElement('h2');
 	const parserOutput = document.createElement('div');
@@ -393,9 +391,9 @@ import {txtToHtml, htmlToTxt} from './parser.js';
 <div class="marker"></div>
 <a href="/lcars-database/legalities.html" class="left-facing copyrights button red" onclick="beep1()"><span class="margin">Legalities</span></a>`;
 
-	const beepZero = new Audio('audio/beep-0.mp3');
-	const beepOne = new Audio('audio/beep-1.mp3');
-	const beepTwo = new Audio('audio/beep-2.mp3');
+	const beepZero = new Audio('/lcars-database/resources/beep-0.mp3');
+	const beepOne = new Audio('/lcars-database/resources/beep-1.mp3');
+	const beepTwo = new Audio('/lcars-database/resources/beep-2.mp3');
 
 	function beep0(){
 		beepZero.play();
