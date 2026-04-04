@@ -1,7 +1,7 @@
 import {txtToHtml, htmlToTxt} from './parser.js';
 (async () => {
-	const currentPage = location.pathname.replace(/^\/LCARS-database\/(.*)\.html$/, '$1');
-	const pageName = currentPage === '/LCARS-database/' ? 'index' : currentPage;
+	const currentPage = location.pathname.replace(/^\/lcars-database\/(.*)\.html$/, '$1');
+	const pageName = currentPage === '/lcars-database/' ? 'index' : currentPage;
 	const pageSource = await fetch(`${pageName}.txt`);
 	const txt = await pageSource.text();
 	const contentArea = document.createElement('div');
@@ -381,17 +381,17 @@ import {txtToHtml, htmlToTxt} from './parser.js';
 		<td>05</td>
 	</tr>
 </table>
-<a class="button header-one dark-blue" href="index.html" onclick="beep0()"><span class="margin">Home</span></a>
-<a class="button header-two light-blue" href="timeline/index.html" onclick="beep0()"><span class="margin">Timeline</span></a>
-<a class="button header-three red" href="trek-analyzed/index.html" onclick="beep0()"><span class="margin">Trek Analyzed</span></a>
-<a class="button header-four light-gray" href="trek-lore/index.html" onclick="beep0()"><span class="margin">Trek Lore</span></a>
+<a class="button header-one dark-blue" href="/lcars-database/index.html" onclick="beep0()"><span class="margin">Home</span></a>
+<a class="button header-two light-blue" href="/lcars-database/timeline/index.html" onclick="beep0()"><span class="margin">Timeline</span></a>
+<a class="button header-three red" href="/lcars-database/trek-analyzed/index.html" onclick="beep0()"><span class="margin">Trek Analyzed</span></a>
+<a class="button header-four light-gray" href="/lcars-database/trek-lore/index.html" onclick="beep0()"><span class="margin">Trek Lore</span></a>
 <div class="bar number-one dark-blue"></div>
 <div class="bar number-two dark-blue"></div>
 <div class="bar-break light-gray"></div>
 <div class="bar-continued number-one light-gray"></div>
 <div class="bar-continued number-two light-blue"></div>
 <div class="marker"></div>
-<a href="legalities.html" class="left-facing copyrights button red" onclick="beep1()"><span class="margin">Legalities</span></a>`;
+<a href="/lcars-database/legalities.html" class="left-facing copyrights button red" onclick="beep1()"><span class="margin">Legalities</span></a>`;
 
 	const beepZero = new Audio('audio/beep-0.mp3');
 	const beepOne = new Audio('audio/beep-1.mp3');

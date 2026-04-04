@@ -99,22 +99,22 @@ div.version-info{
 @font-face{
 	font-family: Antonio;
 	font-weight: 400;
-	src: url(font-file-one.woff2);
+	src: url('/lcars-database/resources/font-file-one.woff2');
 }
 @font-face{
 	font-family: Antonio;
 	font-weight: 400;
-	src: url(font-file-two.woff2);
+	src: url('/lcars-database/resources/font-file-two.woff2');
 }
 @font-face{
 	font-family: Antonio;
 	font-weight: 700;
-	src: url(font-file-one.woff2);
+	src: url('/lcars-database/resources/font-file-one.woff2');
 }
 @font-face{
 	font-family: Antonio;
 	font-weight: 700;
-	src: url(font-file-two.woff2);
+	src: url('/lcars-database/resources/font-file-two.woff2');
 }
 
 /* Sidebar */
