@@ -13,6 +13,7 @@ function txtToHtml(txt){
 	html = html.replace(/'' *([^'].*?) *''/g, '<span class="italic">$1</span>');
 	html = html.replace(/\[ *([^\s"]+?) +(.+?) *\]/g, '<a href="$1" class="external-link">$2</a>');
 	html = html.replace(/\s+/g, ' ');
+	html = html.replace(/&lt;!--([^]*?)-->/g, '<!--$1-->');
 	return html;
 }
 
