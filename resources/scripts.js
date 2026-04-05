@@ -13,8 +13,7 @@ import {txtToHtml, htmlToTxt} from './parser.js';
 	const numberOfPanels = Math.round((screen.height - 5) / 130);
 	const blues = ['light-blue', 'dark-blue'];
 	const grays = ['light-gray', 'dark-gray'];
-	let digits = String(numberOfPanels).length;
-	digits = digits === 1 ? 2 : digits;
+	const digits = Math.max(2, String(numberOfPanels).length);
 
 	pageHeading.innerText = document.title;
 	parserOutput.id = 'parser-output';
