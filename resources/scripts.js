@@ -5,11 +5,8 @@ import {txtToHtml, htmlToTxt} from './parser.js';
 	const contentArea = document.createElement('div');
 	const pageHeading = document.createElement('h2');
 	const parserOutput = document.createElement('div');
+	const waveformWrapper = document.createElement('div');
 	const waveform = document.createElement('div');
-	const bracketOne = document.createElement('div');
-	const bracketTwo = document.createElement('div');
-	const panelColumnOne = document.createElement('div');
-	const panelColumnTwo = document.createElement('div');
 	const numberOfPanels = Math.round((screen.height - 5) / 130);
 	const blues = ['light-blue', 'dark-blue'];
 	const grays = ['light-gray', 'dark-gray'];
@@ -21,21 +18,17 @@ import {txtToHtml, htmlToTxt} from './parser.js';
 	contentArea.classList.add('content-area', 'scrollbox');
 	contentArea.appendChild(pageHeading);
 	contentArea.appendChild(parserOutput);
-	bracketOne.classList.add('element-one');
-	bracketTwo.classList.add('element-two');
+	waveformWrapper.classList.add('waveform-wrapper');
 	waveform.classList.add('waveform');
-	waveform.append(bracketOne);
 
 	for (let i = 0; i < 15; i++){
-		const line = document.createElement('div');
-		line.classList.add('line');
-		waveform.append(line);
+		const waveformSegment = document.createElement('div');
+		waveformSegment.classList.add('waveform-segment');
+		waveform.append(waveformSegment);
 	}
 
-	waveform.append(bracketTwo);
-	document.body.append(waveform);
-	panelColumnOne.classList.add('panel-column');
-	panelColumnTwo.classList.add('panel-column');
+	waveformWrapper.append(waveform);
+	document.body.append(waveformWrapper);
 
 	for (let i = 0; i < numberOfPanels; i++){
 		const panelOne = document.createElement('div');
@@ -73,28 +66,51 @@ import {txtToHtml, htmlToTxt} from './parser.js';
 		const colorOne = paletteOne[r(paletteOne.length)];
 		const colorTwo = paletteTwo[r(paletteTwo.length)];
 
-		panelOne.classList.add(colorOne);
-		panelTwo.classList.add(colorTwo);
+		panelOne.classList.add(colorOne, 'panel', 'panel-left');
+		panelTwo.classList.add(colorTwo, 'panel', 'panel-right');
 		panelOneText.classList.add('margin');
 		panelTwoText.classList.add('margin');
 		panelOneText.innerText = i === 0 ? 'LCARS 40274' : prefix + '-' + r(10) + r(10) + r(10) + r(10) + r(10) + r(10);
 		panelTwoText.innerText = i === 0 ? 'LCARS 40274' : prefix + '-' + String(r(1000000)).padStart(6, 0);
 		panelOne.append(panelOneText);
 		panelTwo.append(panelTwoText);
-		panelColumnOne.append(panelOne);
-		panelColumnTwo.append(panelTwo);
+		document.body.append(panelOne);
+		document.body.append(panelTwo);
 	}
-
-	document.body.append(panelColumnOne);
-	document.body.append(panelColumnTwo);
 
 	hideExcessPanels();
 	addEventListener('resize', hideExcessPanels);
+
+	const cascade = document.createElement('table');
+	cascade.classList.add('cascade');
+
+	for (let r = 0; r < 7; r++){
+		const row = document.createElement('tr');
+		for (let c = 0; c < 35; c++){
+			const cell = document.createElement('td');
+			let n;
+
+			if (r(100) < 5 || c === 1){
+				n = '';
+			} else if (r(100) < 40){
+				n = String(r(10000000));
+			} else {
+				n = String(r(1000));
+			}
+
+			cell.innerHTML = n;
+			row.append(cell);
+		}
+		cascade.append(row);
+	}
+
+	document.body.append(cascade);
 
 	const siteHeading = document.createElement('h1');
 	siteHeading.innerText = 'LCARS Database';
 	document.body.append(siteHeading);
 	document.body.append(contentArea);
+
 	document.body.innerHTML += `
 <div class="button sidebar-1 left-facing red" onclick="beep0()"><span class="margin">03-975683</span></div>
 <div class="button sidebar-2 left-facing light-gray" onclick="beep0()"><span class="margin">04-765466</span></div>
@@ -117,267 +133,6 @@ import {txtToHtml, htmlToTxt} from './parser.js';
 <div class="button sidebar-10 right-facing light-gray" onclick="beep0()"><span class="margin">03-975683</span></div>
 <div class="button sidebar-11 right-facing red" onclick="beep0()"><span class="margin">04-765466</span></div>
 <div class="button sidebar-12 right-facing dark-blue" onclick="beep0()"><span class="margin">05-224353</span></div>
-<table class="cascade">
-	<tr>
-		<td>2385</td>
-		<td></td>
-		<td>8578232</td>
-		<td>9</td>
-		<td>5789</td>
-		<td>3882</td>
-		<td>5893</td>
-		<td>9885</td>
-		<td>3489</td>
-		<td>3465</td>
-		<td>0846</td>
-		<td>9798</td>
-		<td>9629</td>
-		<td>29</td>
-		<td>34</td>
-		<td>2347</td>
-		<td>5762</td>
-		<td>4588</td>
-		<td>05</td>
-		<td>6587</td>
-		<td>3465</td>
-		<td>867</td>
-		<td>2347</td>
-		<td>5762</td>
-		<td>279</td>
-		<td>89</td>
-		<td>6589</td>
-		<td>6547</td>
-		<td>6587</td>
-		<td>3465</td>
-		<td>867</td>
-		<td>2347</td>
-		<td>5762</td>
-		<td>4588</td>
-		<td>05</td>
-	</tr>
-	<tr>
-		<td>2064</td>
-		<td></td>
-		<td>2064962</td>
-		<td>7</td>
-		<td>9776</td>
-		<td>626</td>
-		<td>1276</td>
-		<td>7612</td>
-		<td>126</td>
-		<td>97</td>
-		<td>6165</td>
-		<td>6626</td>
-		<td>876</td>
-		<td>74</td>
-		<td>2385</td>
-		<td>6589</td>
-		<td>6547</td>
-		<td>6587</td>
-		<td>3465</td>
-		<td>867</td>
-		<td>2347</td>
-		<td>5762</td>
-		<td>4588</td>
-		<td>05</td>
-		<td>9</td>
-		<td>5789</td>
-		<td>3882</td>
-		<td>5893</td>
-		<td>3489</td>
-		<td>3465</td>
-		<td>0846</td>
-		<td>9798</td>
-		<td>9629</td>
-		<td>29</td>
-		<td>4588</td>
-	</tr>
-	<tr>
-		<td>34</td>
-		<td></td>
-		<td>279</td>
-		<td></td>
-		<td>89</td>
-		<td>6589</td>
-		<td>6547</td>
-		<td>6589</td>
-		<td>6547</td>
-		<td>6587</td>
-		<td>3465</td>
-		<td>867</td>
-		<td>2347</td>
-		<td>5762</td>
-		<td>4588</td>
-		<td>05</td>
-		<td>6587</td>
-		<td>3465</td>
-		<td>867</td>
-		<td>2347</td>
-		<td>5762</td>
-		<td>4588</td>
-		<td>05</td>
-		<td>2064</td>
-		<td>9776</td>
-		<td>626</td>
-		<td>1276</td>
-		<td>7612</td>
-		<td>126</td>
-		<td>97</td>
-		<td>6165</td>
-		<td>6626</td>
-		<td>876</td>
-		<td>74</td>
-		<td>3489</td>
-	</tr>
-	<tr>
-		<td>4768</td>
-		<td></td>
-		<td>8967248</td>
-		<td>7</td>
-		<td>9798</td>
-		<td>8969</td>
-		<td>476</td>
-		<td>9047</td>
-		<td>8476</td>
-		<td>9749</td>
-		<td>0982</td>
-		<td>8969</td>
-		<td>0247</td>
-		<td>89</td>
-		<td>34</td>
-		<td>279</td>
-		<td>89</td>
-		<td>6589</td>
-		<td>6547</td>
-		<td>6587</td>
-		<td>3465</td>
-		<td>867</td>
-		<td>2347</td>
-		<td>2347</td>
-		<td>5762</td>
-		<td>4588</td>
-		<td>05</td>
-		<td>6587</td>
-		<td>3465</td>
-		<td>867</td>
-		<td>2347</td>
-		<td>5762</td>
-		<td>5762</td>
-		<td>4588</td>
-		<td>05</td>
-	</tr>
-	<tr>
-		<td>685</td>
-		<td></td>
-		<td>3478</td>
-		<td>8</td>
-		<td>867</td>
-		<td>346</td>
-		<td>34</td>
-		<td>48</td>
-		<td>49</td>
-		<td>8</td>
-		<td>89</td>
-		<td>897</td>
-		<td>38</td>
-		<td>34</td>
-		<td>279</td>
-		<td></td>
-		<td>89</td>
-		<td>6589</td>
-		<td>6547</td>
-		<td>6587</td>
-		<td>3465</td>
-		<td>867</td>
-		<td>2347</td>
-		<td>5762</td>
-		<td>2347</td>
-		<td>5762</td>
-		<td>4588</td>
-		<td>05</td>
-		<td>6587</td>
-		<td>3465</td>
-		<td>867</td>
-		<td>2347</td>
-		<td>5762</td>
-		<td>4588</td>
-		<td>05</td>
-	</tr>
-	<tr>
-		<td>757</td>
-		<td></td>
-		<td>898990</td>
-		<td>8</td>
-		<td>200</td>
-		<td>285</td>
-		<td>923</td>
-		<td>9</td>
-		<td>387</td>
-		<td>238</td>
-		<td>578</td>
-		<td>875</td>
-		<td>87</td>
-		<td>2347</td>
-		<td>5762</td>
-		<td>4588</td>
-		<td>05</td>
-		<td>6587</td>
-		<td>3465</td>
-		<td>867</td>
-		<td>2347</td>
-		<td>5762</td>
-		<td>9</td>
-		<td>34</td>
-		<td></td>
-		<td>279</td>
-		<td>89</td>
-		<td>6589</td>
-		<td>6547</td>
-		<td>6587</td>
-		<td>3465</td>
-		<td>867</td>
-		<td>2347</td>
-		<td>5762</td>
-		<td>05</td>
-	</tr>
-	<tr>
-		<td>484</td>
-		<td></td>
-		<td>947589</td>
-		<td>7</td>
-		<td>569</td>
-		<td>68</td>
-		<td>678</td>
-		<td>2347</td>
-		<td>5762</td>
-		<td>4588</td>
-		<td>05</td>
-		<td>6587</td>
-		<td>3465</td>
-		<td>867</td>
-		<td>2347</td>
-		<td>5762</td>
-		<td>893</td>
-		<td>56</td>
-		<td>584</td>
-		<td>678</td>
-		<td>476</td>
-		<td>458</td>
-		<td>4</td>
-		<td>34</td>
-		<td>279</td>
-		<td>89</td>
-		<td>6589</td>
-		<td>6547</td>
-		<td>6587</td>
-		<td>3465</td>
-		<td>867</td>
-		<td>2347</td>
-		<td>5762</td>
-		<td>4588</td>
-		<td>05</td>
-	</tr>
-</table>
 <a class="button header-one dark-blue" href="/lcars-database" onclick="beep0()"><span class="margin">Home</span></a>
 <a class="button header-two light-blue" href="/lcars-database/timeline" onclick="beep0()"><span class="margin">Timeline</span></a>
 <a class="button header-three red" href="/lcars-database/trek-analyzed" onclick="beep0()"><span class="margin">Trek Analyzed</span></a>
@@ -423,8 +178,8 @@ import {txtToHtml, htmlToTxt} from './parser.js';
 
 	function hideExcessPanels(){
 		const wantedPanelCount = Math.round((innerHeight - 5) / 130);
-		const wantedPanels = document.querySelectorAll(`.panel-column > div:not(:nth-child(${wantedPanelCount}) ~ div)`);
-		const excessPanels = document.querySelectorAll(`.panel-column > :nth-child(${wantedPanelCount}) ~ div`);
+		const wantedPanels = document.querySelectorAll(`.panel:not(:nth-child(${wantedPanelCount}) ~ div)`);
+		const excessPanels = document.querySelectorAll(`.panel:nth-child(${wantedPanelCount}) ~ div`);
 
 		wantedPanels.forEach(panel => panel.classList.remove('hidden'));
 		excessPanels.forEach(panel => panel.classList.add('hidden'));
