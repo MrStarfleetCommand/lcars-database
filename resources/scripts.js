@@ -16,8 +16,8 @@ import {txtToHtml, htmlToTxt} from './parser.js';
 	parserOutput.id = 'parser-output';
 	parserOutput.innerHTML = txtToHtml(txt)
 	contentArea.classList.add('content-area', 'scrollbox');
-	contentArea.appendChild(pageHeading);
-	contentArea.appendChild(parserOutput);
+	contentArea.append(pageHeading);
+	contentArea.append(parserOutput);
 	waveformWrapper.classList.add('waveform-wrapper');
 	waveform.classList.add('waveform');
 
@@ -81,6 +81,10 @@ import {txtToHtml, htmlToTxt} from './parser.js';
 	hideExcessPanels();
 	addEventListener('resize', hideExcessPanels);
 
+	const siteHeading = document.createElement('h1');
+	siteHeading.innerText = 'LCARS Database';
+	document.body.append(siteHeading);
+
 	const cascade = document.createElement('table');
 	cascade.classList.add('cascade');
 
@@ -106,12 +110,57 @@ import {txtToHtml, htmlToTxt} from './parser.js';
 
 	document.body.append(cascade);
 
-	const siteHeading = document.createElement('h1');
-	siteHeading.innerText = 'LCARS Database';
-	document.body.append(siteHeading);
+	const header1 = document.createElement('a');
+	const header2 = document.createElement('a');
+	const header3 = document.createElement('a');
+	const header4 = document.createElement('a');
+	const header1Text = document.createElement('span');
+	const header2Text = document.createElement('span');
+	const header3Text = document.createElement('span');
+	const header4Text = document.createElement('span');
+
+	header1Text.classList.add('margin');
+	header2Text.classList.add('margin');
+	header3Text.classList.add('margin');
+	header4Text.classList.add('margin');
+	header1Text.append('Home');
+	header2Text.append('Timeline');
+	header3Text.append('Trek Analyzed');
+	header4Text.append('Trek Lore');
+
+	header1.classList.add('button', 'header-one', 'dark-blue');
+	header2.classList.add('button', 'header-two', 'light-blue');
+	header3.classList.add('button', 'header-three', 'red');
+	header4.classList.add('button', 'header-four', 'light-gray');
+	header1.href = '/lcars-database/';
+	header2.href = '/lcars-database/timeline/';
+	header3.href = '/lcars-database/trek-analyzed/';
+	header4.href = '/lcars-database/trek-lore/';
+	header1.addEventListener('click', beep0);
+	header2.addEventListener('click', beep0);
+	header3.addEventListener('click', beep0);
+	header4.addEventListener('click', beep0);
+	header1.append(header1Text);
+	header2.append(header2Text);
+	header3.append(header3Text);
+	header4.append(header4Text);
+
+	document.body.append(header1);
+	document.body.append(header2);
+	document.body.append(header3);
+	document.body.append(header4);
+
+
+
 	document.body.append(contentArea);
 
 	document.body.innerHTML += `
+<div class="bar number-one dark-blue"></div>
+<div class="bar number-two dark-blue"></div>
+<div class="bar-break light-gray"></div>
+<div class="bar-continued number-one light-gray"></div>
+<div class="bar-continued number-two light-blue"></div>
+<div class="marker"></div>
 <div class="button sidebar-1 left-facing red" onclick="beep0()"><span class="margin">03-975683</span></div>
 <div class="button sidebar-2 left-facing light-gray" onclick="beep0()"><span class="margin">04-765466</span></div>
 <div class="button sidebar-3 left-facing dark-blue" onclick="beep0()"><span class="margin">05-224353</span></div>
@@ -133,16 +182,6 @@ import {txtToHtml, htmlToTxt} from './parser.js';
 <div class="button sidebar-10 right-facing light-gray" onclick="beep0()"><span class="margin">03-975683</span></div>
 <div class="button sidebar-11 right-facing red" onclick="beep0()"><span class="margin">04-765466</span></div>
 <div class="button sidebar-12 right-facing dark-blue" onclick="beep0()"><span class="margin">05-224353</span></div>
-<a class="button header-one dark-blue" href="/lcars-database" onclick="beep0()"><span class="margin">Home</span></a>
-<a class="button header-two light-blue" href="/lcars-database/timeline" onclick="beep0()"><span class="margin">Timeline</span></a>
-<a class="button header-three red" href="/lcars-database/trek-analyzed" onclick="beep0()"><span class="margin">Trek Analyzed</span></a>
-<a class="button header-four light-gray" href="/lcars-database/trek-lore" onclick="beep0()"><span class="margin">Trek Lore</span></a>
-<div class="bar number-one dark-blue"></div>
-<div class="bar number-two dark-blue"></div>
-<div class="bar-break light-gray"></div>
-<div class="bar-continued number-one light-gray"></div>
-<div class="bar-continued number-two light-blue"></div>
-<div class="marker"></div>
 <a href="/lcars-database/legalities.html" class="left-facing copyrights button red" onclick="beep1()"><span class="margin">Legalities</span></a>`;
 
 	const beepZero = new Audio('/lcars-database/resources/beep-0.mp3');
