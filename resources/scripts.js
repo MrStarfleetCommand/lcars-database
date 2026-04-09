@@ -1,7 +1,6 @@
-import {txtToHtml, htmlToTxt} from '/parser.js';
+import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 (async () => {
-	const sourcePage = `${location.pathname.replace(/\/+$/, '')}/index.html`.replace(/\.html(?:\/index\.html)?$/, '.txt');
-	const txt = await (await fetch(sourcePage)).text();
+	const sourceText = await fetchSourceText();
 	const contentArea = document.createElement('div');
 	const pageHeading = document.createElement('h2');
 	const parserOutput = document.createElement('div');
@@ -18,7 +17,7 @@ import {txtToHtml, htmlToTxt} from '/parser.js';
 
 	pageHeading.innerText = document.title;
 	parserOutput.id = 'parser-output';
-	parserOutput.innerHTML = txtToHtml(txt);
+	parserOutput.innerHTML = txtToHtml(sourceText);
 	contentArea.classList.add('content-area', 'scrollbox');
 	contentArea.appendChild(pageHeading);
 	contentArea.appendChild(parserOutput);
