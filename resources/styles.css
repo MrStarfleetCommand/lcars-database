@@ -64,9 +64,11 @@ ul li::before{
 p.attribution{
 	text-align: right;
 }
-span.margin{
-	margin: 0 15px 5px 15px;
-	text-align: right;
+.box-with-label{
+	display: flex;
+	justify-content: end;
+	align-items: end;
+	padding: 0.3em 1em;
 }
 span#byline{
 	text-align: right;
@@ -126,9 +128,7 @@ div.version-info{
 
 /* Sidebar */
 .panel{
-	display: flex;
 	grid-row: span 2;
-	justify-content: right;
 }
 .panel-left{
 	grid-column: 3;
@@ -141,9 +141,6 @@ div.version-info{
 }
 .panel-column + .panel-column > :nth-child(3){
 	border-radius: 50px 0 0 0;
-}
-.panel-column > :not(:nth-child(2)){
-	align-items: end;
 }
 .panel-column > :nth-child(2){
 	align-items: start;
@@ -207,9 +204,6 @@ div.version-info{
 
 /* Buttons */
 .button{
-	display: flex;
-	justify-content: right;
-	align-items: end;
 	width: 180px;
 	height: 60px;
 	text-decoration: none;
