@@ -130,29 +130,86 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	marker.classList.add('marker');
 
 	document.body.append(barOne, barTwo, barBreak, barContinuedOne, barContinuedTwo, marker);
-	document.body.innerHTML += `
-<div class="button box-with-label sidebar-1 left-facing red" onclick="beep0()">03-975683</div>
-<div class="button box-with-label sidebar-2 left-facing light-gray" onclick="beep0()">04-765466</div>
-<div class="button box-with-label sidebar-3 left-facing dark-blue" onclick="beep0()">05-224353</div>
-<div class="button box-with-label sidebar-4 square border-button" onclick="beep2()">03-975683</div>
-<div class="button box-with-label sidebar-5 square border-button" onclick="beep2()">04-765466</div>
-<div class="button box-with-label sidebar-6 square border-button-cyan" onclick="beep1()">05-224353</div>
-<div class="version-info">
-	<ul>
-		<li>Operating Version: v104.04.720</li>
-		<li>Last Updated: 2391-01-01T19:54:17Z (68024.71)</li>
-		<li>Latest Version: v118.77.022</li>
-		<li>Latest Release: 2405-07-20T22:17:40Z (82566.00)</li>
-		<li>Current Operational Load: 6 Kiloquads</li>
-	</ul>
-</div>
-<div class="button box-with-label sidebar-7 left-facing red blink-slow" onclick="beep0()">03-975683</div>
-<div class="button box-with-label sidebar-8 left-facing light-blue blink-fast" onclick="beep0()">04-765466</div>
-<div class="button box-with-label sidebar-9 left-facing dark-gray" onclick="beep0()">05-224353</div>
-<div class="button box-with-label sidebar-10 right-facing light-gray" onclick="beep0()">03-975683</div>
-<div class="button box-with-label sidebar-11 right-facing red" onclick="beep0()">04-765466</div>
-<div class="button box-with-label sidebar-12 right-facing dark-blue" onclick="beep0()">05-224353</div>
-<a href="/lcars-database/legalities.html" class="left-facing copyrights button box-with-label red" onclick="beep1()">Legalities</a>`;
+
+	const sidebar1 = document.createElement('div');
+	const sidebar2 = document.createElement('div');
+	const sidebar3 = document.createElement('div');
+	const sidebar4 = document.createElement('div');
+	const sidebar5 = document.createElement('div');
+	const sidebar6 = document.createElement('div');
+	const sidebar7 = document.createElement('div');
+	const sidebar8 = document.createElement('div');
+	const sidebar9 = document.createElement('div');
+	const sidebar10 = document.createElement('div');
+	const sidebar11 = document.createElement('div');
+	const sidebar12 = document.createElement('div');
+
+	sidebar1.classList.add('button', 'box-with-label', 'sidebar-1', 'left-facing', 'red');
+	sidebar2.classList.add('button', 'box-with-label', 'sidebar-2', 'left-facing', 'light-gray');
+	sidebar3.classList.add('button', 'box-with-label', 'sidebar-3', 'left-facing', 'dark-blue');
+	sidebar4.classList.add('button', 'box-with-label', 'sidebar-4', 'square', 'border-button');
+	sidebar5.classList.add('button', 'box-with-label', 'sidebar-5', 'square', 'border-button');
+	sidebar6.classList.add('button', 'box-with-label', 'sidebar-6', 'square', 'border-button-cyan');
+	sidebar7.classList.add('button', 'box-with-label', 'sidebar-7', 'left-facing', 'red', 'blink-slow');
+	sidebar8.classList.add('button', 'box-with-label', 'sidebar-8', 'left-facing', 'light-blue', 'blink-fast');
+	sidebar9.classList.add('button', 'box-with-label', 'sidebar-9', 'left-facing', 'dark-gray');
+	sidebar10.classList.add('button', 'box-with-label', 'sidebar-10', 'right-facing', 'light-gray');
+	sidebar11.classList.add('button', 'box-with-label', 'sidebar-11', 'right-facing', 'red');
+	sidebar12.classList.add('button', 'box-with-label', 'sidebar-12', 'right-facing', 'dark-blue');
+
+	sidebar1.addEventListener('click', beep0);
+	sidebar2.addEventListener('click', beep0);
+	sidebar3.addEventListener('click', beep0);
+	sidebar4.addEventListener('click', beep2);
+	sidebar5.addEventListener('click', beep2);
+	sidebar6.addEventListener('click', beep1);
+	sidebar7.addEventListener('click', beep0);
+	sidebar8.addEventListener('click', beep0);
+	sidebar9.addEventListener('click', beep0);
+	sidebar10.addEventListener('click', beep0);
+	sidebar11.addEventListener('click', beep0);
+	sidebar12.addEventListener('click', beep0);
+
+	sidebar1.append('03-975683');
+	sidebar2.append('04-765466');
+	sidebar3.append('05-224353');
+	sidebar4.append('03-975683');
+	sidebar5.append('04-765466');
+	sidebar6.append('05-224353');
+	sidebar7.append('03-975683');
+	sidebar8.append('04-765466');
+	sidebar9.append('05-224353');
+	sidebar10.append('03-975683');
+	sidebar11.append('04-765466');
+	sidebar12.append('05-224353');
+
+	document.body.append(sidebar1, sidebar2, sidebar3, sidebar4, sidebar5, sidebar6, sidebar7, sidebar8, sidebar9, sidebar10, sidebar11, sidebar12);
+
+	const versionInfo = document.createElement('div');
+	const ul = document.createElement('ul');
+	const opVersion = document.createElement('li');
+	const updated = document.createElement('li');
+	const latestVersion = document.createElement('li');
+	const latestRelease = document.createElement('li');
+	const curOpLoad = document.createElement('li');
+
+	versionInfo.classList.add('version-info');
+	opVersion.append('Operating Version: v104.04.720');
+	updated.append('Last Updated: 2391-01-01T19:54:17Z (68024.71)');
+	latestVersion.append('Latest Version: v118.77.022');
+	latestRelease.append('Latest Release: 2405-07-20T22:17:40Z (82566.00)');
+	curOpLoad.append('Current Operational Load: 6 Kiloquads');
+
+	ul.append(opVersion, updated, latestVersion, latestRelease, curOpLoad);
+	versionInfo.append(ul);
+	document.body.append(versionInfo);
+
+	const legalities = document.createElement('a');
+	legalities.href = '/lcars-database/legalities.html';
+	legalities.classList.add('left-facing', 'copyrights', 'button', 'box-with-label', 'red');
+	legalities.addEventListener('click', beep1);
+	legalities.append('Legalities');
+	document.body.append(legalities);
 
 	const contentArea = document.createElement('div');
 	const pageHeading = document.createElement('h2');
