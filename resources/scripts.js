@@ -218,7 +218,7 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 
 	pageHeading.innerText = document.title;
 	parserOutput.id = 'parser-output';
-	parserOutput.append(txtToHtml(sourceText));
+	parserOutput.innerHTML = txtToHtml(sourceText);
 	contentArea.classList.add('content-area', 'scrollbox');
 	contentArea.append(pageHeading, parserOutput);
 	document.body.append(contentArea);
