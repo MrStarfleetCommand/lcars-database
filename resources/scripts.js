@@ -205,7 +205,7 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	document.body.append(versionInfo);
 
 	const legalities = document.createElement('a');
-	legalities.href = '/lcars-database/legalities.html';
+	legalities.href = '/lcars-database/legalities';
 	legalities.classList.add('left-facing', 'copyrights', 'button', 'box-with-label', 'red');
 	legalities.addEventListener('click', beep1);
 	legalities.append('Legalities');
@@ -218,7 +218,7 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 
 	pageHeading.innerText = document.title;
 	parserOutput.id = 'parser-output';
-	parserOutput.innerHTML = txtToHtml(sourceText);
+	parserOutput.innerHTML = txtToHtml(sourceText, 'lcars-database');
 	contentArea.classList.add('content-area', 'scrollbox');
 	contentArea.append(pageHeading, parserOutput);
 	document.body.append(contentArea);
