@@ -14,11 +14,11 @@ body{
 	background: #000000;
 	color: #e7442a;
 	font-family: Antonio, Arial;
-	margin: 0;
 	display: grid;
 	grid-template-columns: repeat(4, 12em) auto repeat(2, 12em);
 	grid-auto-rows: 4em;
 	gap: 0.5em;
+	margin: 0.5em;
 }
 p a{
 	color: #9ea5ba;
@@ -463,8 +463,9 @@ div.scrollbox td{
 }
 .waveform{
 	background-color: #000000;
-	position: absolute;
-	inset: -1.5em 1.5em;
+	width: calc(100% - 3em);
+	height: calc(100% + 3em);
+	margin: -1.5em 1.5em;
 }
 .waveform-segment{
 	height: calc(100% / 15);
