@@ -252,7 +252,7 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	}
 
 	function panelCount(verticalSpace){
-		return Math.round((verticalSpace - 8) / 136);
+		return Math.floor((verticalSpace - 8) / 136);
 	}
 
 	function updatePanels(){
