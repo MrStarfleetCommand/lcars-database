@@ -14,10 +14,8 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	waveformWrapper.append(waveform);
 	document.body.append(waveformWrapper);
 
-	const numberOfPanels = Math.round((screen.height - 5) / 130);
+	const numberOfPanels = panelCount(screen.height);
 	const digits = Math.max(2, String(numberOfPanels).length);
-	const blues = ['light-blue', 'dark-blue'];
-	const grays = ['light-gray', 'dark-gray'];
 
 	for (let i = 0; i < numberOfPanels; i++){
 		const panelOne = document.createElement('div');
@@ -27,26 +25,26 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 		let paletteTwo;
 
 		if (i < 2){
-			paletteOne = blues;
-			paletteTwo = blues;
+			paletteOne = ['light-blue', 'dark-blue'];
+			paletteTwo = ['light-blue', 'dark-blue'];
 		} else if (i === 2){
-			paletteOne = blues;
+			paletteOne = ['light-blue', 'dark-blue'];
 			paletteTwo = ['light-blue', 'light-gray'];
 		} else if (i === 3){
 			paletteOne = ['dark-blue', 'light-gray'];
-			paletteTwo = blues;
+			paletteTwo = ['light-blue', 'dark-blue'];
 		} else if (i % 7 === 1 || i % 7 === 3){
-			paletteOne = grays;
-			paletteTwo = blues;
+			paletteOne = ['light-gray', 'dark-gray'];
+			paletteTwo = ['light-blue', 'dark-blue'];
 		} else if (i % 7 === 2 || i % 7 === 4 || i % 7 === 5){
-			paletteOne = blues;
-			paletteTwo = blues;
+			paletteOne = ['light-blue', 'dark-blue'];
+			paletteTwo = ['light-blue', 'dark-blue'];
 		} else if (i % 7 === 6){
-			paletteOne = blues;
-			paletteTwo = grays;
+			paletteOne = ['light-blue', 'dark-blue'];
+			paletteTwo = ['light-gray', 'dark-gray'];
 		} else if (!(i % 7)){
-			paletteOne = grays;
-			paletteTwo = grays;
+			paletteOne = ['light-gray', 'dark-gray'];
+			paletteTwo = ['light-gray', 'dark-gray'];
 		}
 
 		const colorOne = paletteOne[r(paletteOne.length)];
@@ -54,13 +52,13 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 
 		panelOne.classList.add(colorOne, 'panel', 'box-with-label', 'panel-left');
 		panelTwo.classList.add(colorTwo, 'panel', 'box-with-label', 'panel-right');
-		panelOne.innerText = i === 0 ? 'LCARS 40274' : prefix + '-' + r(10) + r(10) + r(10) + r(10) + r(10) + r(10);
+		panelOne.innerText = i === 0 ? 'LCARS 40274' : prefix + '-' + String(r(1000000)).padStart(6, 0);
 		panelTwo.innerText = i === 0 ? 'LCARS 40274' : prefix + '-' + String(r(1000000)).padStart(6, 0);
 		document.body.append(panelOne, panelTwo);
 	}
 
-	hideExcessPanels();
-	addEventListener('resize', hideExcessPanels);
+	updatePanels();
+	addEventListener('resize', updatePanels);
 
 	const siteHeading = document.createElement('h1');
 	siteHeading.innerText = 'LCARS Database';
@@ -253,12 +251,19 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 		return Math.floor(Math.random() * i);
 	}
 
-	function hideExcessPanels(){
-		const wantedPanelCount = Math.round((innerHeight - 5) / 130);
-		const wantedPanels = document.querySelectorAll(`.panel:not(:nth-child(${wantedPanelCount}) ~ div)`);
-		const excessPanels = document.querySelectorAll(`.panel:nth-child(${wantedPanelCount}) ~ div`);
+	function panelCount(verticalSpace){
+		return Math.round((verticalSpace - 8) / 136);
+	}
 
-		wantedPanels.forEach(panel => panel.classList.remove('hidden'));
-		excessPanels.forEach(panel => panel.classList.add('hidden'));
+	function updatePanels(){
+		const visiblePanelCount = panelCount(innerHeight);
+		const panels = document.querySelectorAll('.panel');
+		for (let i = 0; i < numberOfPanels * 2; i++){
+			if (i < visiblePanelCount * 2){
+				panels[i].classList.remove('hidden');
+			} else {
+				panels[i].classList.add('hidden');
+			}
+		}
 	}
 })();
