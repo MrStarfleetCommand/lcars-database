@@ -67,7 +67,7 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	const cascade = document.createElement('table');
 	cascade.classList.add('cascade');
 
-	for (let r = 0; r < 7; r++){
+	for (let i = 0; i < 7; i++){
 		const row = document.createElement('tr');
 		for (let c = 0; c < 35; c++){
 			const cell = document.createElement('td');
