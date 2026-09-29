@@ -93,12 +93,9 @@ div.wrap {
 	flex-wrap: wrap;
 	padding: 2.5px;
 }
-div.version-info {
-	position: fixed;
-	top: 460px;
-	left: 5px;
-	bottom: 200px;
-	width: 365px;
+.version-info {
+	grid-column: 1;
+	grid-row: 8;
 }
 :root .hidden {
 	display: none;
@@ -221,8 +218,6 @@ div.version-info {
 }
 .border-button {
 	border: 3px solid #e7442a;
-	width: 174px;
-	height: 55px;
 }
 .border-button:hover {
 	border-color: #ff7755;
@@ -230,8 +225,6 @@ div.version-info {
 }
 .border-button-cyan {
 	border: 3px solid #00aacc;
-	width: 174px;
-	height: 55px;
 	color: #00aacc;
 }
 .border-button-cyan:hover {
@@ -257,35 +250,29 @@ div.version-info {
 div.scrollbox a.button {
 	margin: 2.5px;
 }
-div.sidebar-1 {
-	position: fixed;
-	top: 265px;
-	left: 5px;
+.sidebar-1 {
+	grid-column: 1;
+	grid-row: 5;
 }
-div.sidebar-2 {
-	position: fixed;
-	top: 330px;
-	left: 5px;
+.sidebar-2 {
+	grid-column: 1;
+	grid-row: 6;
 }
-div.sidebar-3 {
-	position: fixed;
-	top: 395px;
-	left: 5px;
+.sidebar-3 {
+	grid-column: 1;
+	grid-row: 7;
 }
-div.sidebar-4 {
-	position: fixed;
-	top: 265px;
-	left: 190px;
+.sidebar-4 {
+	grid-column: 2;
+	grid-row: 5;
 }
-div.sidebar-5 {
-	position: fixed;
-	top: 330px;
-	left: 190px;
+.sidebar-5 {
+	grid-column: 2;
+	grid-row: 6;
 }
-div.sidebar-6 {
-	position: fixed;
-	top: 395px;
-	left: 190px;
+.sidebar-6 {
+	grid-column: 2;
+	grid-row: 7;
 }
 div.sidebar-7 {
 	position: fixed;
