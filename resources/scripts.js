@@ -66,7 +66,7 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 
 	for (let i = 0; i < 7; i++) {
 		const row = document.createElement('tr');
-		for (let c = 0; c < (screen.width / 34); c++) {
+		for (let c = 0; c < (screen.width / 34) * 4; c++) {
 			const cell = document.createElement('td');
 			let n;
 
@@ -252,11 +252,11 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	}
 
 	function panelCount(verticalSpace) {
-		return Math.floor((verticalSpace - 8) / 136);
+		return Math.floor((verticalSpace - 8) / 136) * 4;
 	}
 
 	function updatePanels() {
-		const visiblePanelCount = panelCount(innerHeight);
+		const visiblePanelCount = panelCount(innerHeight) / 4;
 		const panels = document.querySelectorAll('.panel');
 		const cascadeCells = document.querySelectorAll('.cascade td');
 
@@ -269,7 +269,7 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 		}
 
 		for (let i = 0; i < cascadeCells.length; i++) {
-			if (i % (cascadeCells.length / 7) < (innerWidth - 1216) / 50) {
+			if (i % (cascadeCells.length / 7) < (innerWidth - 1216) / 36) {
 				cascadeCells[i].classList.remove('hidden');
 			} else {
 				cascadeCells[i].classList.add('hidden');
