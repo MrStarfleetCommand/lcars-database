@@ -57,9 +57,6 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 		document.body.append(panelOne, panelTwo);
 	}
 
-	updatePanels();
-	addEventListener('resize', updatePanels);
-
 	const siteHeading = document.createElement('h1');
 	siteHeading.innerText = 'LCARS Database';
 	document.body.append(siteHeading);
@@ -88,6 +85,9 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	}
 
 	document.body.append(cascade);
+
+	updatePanels();
+	addEventListener('resize', updatePanels);
 
 	const header1 = document.createElement('a');
 	const header2 = document.createElement('a');
@@ -269,7 +269,7 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 		}
 
 		for (let i = 0; i < cascadeCells.length; i++) {
-			if (i % (cascadeCells.length / 7) < (innerWidth - 1216) / 36) {
+			if (i % (cascadeCells.length / 7) < (innerWidth - 1216) / 50) {
 				cascadeCells[i].classList.remove('hidden');
 			} else {
 				cascadeCells[i].classList.add('hidden');
