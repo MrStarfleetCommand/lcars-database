@@ -170,6 +170,8 @@ div.version-info {
 	font-size: 0.65em;
 	text-align: right;
 	color: #000000;
+	width: fit-content;
+	margin-inline: auto;
 }
 .cascade tr:nth-child(1) {
 	animation: colorchange 2s infinite;
@@ -205,10 +207,8 @@ div.version-info {
 
 /* Buttons */
 .button {
-	width: 180px;
-	height: 60px;
 	text-decoration: none;
-	border-radius: 60px;
+	border-radius: 2em;
 }
 .right-facing {
 	border-radius: 0 60px 60px 0;
@@ -239,24 +239,20 @@ div.version-info {
 	color: #00ffff;
 }
 .header-one {
-	position: fixed;
-	top: 100px;
-	right: 220px;
+	grid-column: 6;
+	grid-row: 2;
 }
 .header-two {
-	position: fixed;
-	top: 100px;
-	right: 35px;
+	grid-column: 7;
+	grid-row: 2;
 }
 .header-three {
-	position: fixed;
-	top: 165px;
-	right: 220px;
+	grid-column: 6;
+	grid-row: 3;
 }
 .header-four {
-	position: fixed;
-	top: 165px;
-	right: 35px;
+	grid-column: 7;
+	grid-row: 3;
 }
 div.scrollbox a.button {
 	margin: 2.5px;
@@ -388,10 +384,11 @@ div.blink-fast {
 /* Headers */
 h1 {
 	font-size: 4em;
-	position: fixed;
-	top: 5px;
-	right: 35px;
+	line-height: 1;
 	margin: 0;
+	grid-column: 5 / span 3;
+	grid-row: 1;
+	text-align: right;
 }
 h2 {
 	font-size: 3em;
