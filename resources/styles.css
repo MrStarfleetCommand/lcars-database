@@ -94,8 +94,8 @@ div.wrap {
 	padding: 2.5px;
 }
 .version-info {
-	grid-column: 1;
-	grid-row: 8;
+	grid-column: 1 / span 2;
+	grid-row: 8 / span 3;
 }
 :root .hidden {
 	display: none;
@@ -274,40 +274,33 @@ div.scrollbox a.button {
 	grid-column: 2;
 	grid-row: 7;
 }
-div.sidebar-7 {
-	position: fixed;
-	bottom: 135px;
-	left: 5px;
+.sidebar-7 {
+	grid-column: 1;
+	grid-row: 11;
 }
-div.sidebar-8 {
-	position: fixed;
-	bottom: 70px;
-	left: 5px;
+.sidebar-8 {
+	grid-column: 1;
+	grid-row: 12;
 }
-div.sidebar-9 {
-	position: fixed;
-	bottom: 5px;
-	left: 5px;
+.sidebar-9 {
+	grid-column: 1;
+	grid-row: 13;
 }
-div.sidebar-10 {
-	position: fixed;
-	bottom: 135px;
-	left: 190px;
+.sidebar-10 {
+	grid-column: 2;
+	grid-row: 11;
 }
-div.sidebar-11 {
-	position: fixed;
-	bottom: 70px;
-	left: 190px;
+.sidebar-11 {
+	grid-column: 2;
+	grid-row: 12;
 }
-div.sidebar-12 {
-	position: fixed;
-	bottom: 5px;
-	left: 190px;
+.sidebar-12 {
+	grid-column: 2;
+	grid-row: 13;
 }
-a.button.copyrights {
-	position: fixed;
-	bottom: 5px;
-	right: 5px;
+.copyrights {
+	grid-column: 7;
+	grid-row: 13;
 }
 div.blink-slow {
 	animation: blink 9s infinite;
