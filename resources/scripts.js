@@ -5,7 +5,7 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	waveformWrapper.classList.add('waveform-wrapper');
 	waveform.classList.add('waveform');
 
-	for (let i = 0; i < 15; i++){
+	for (let i = 0; i < 15; i++) {
 		const waveformSegment = document.createElement('div');
 		waveformSegment.classList.add('waveform-segment');
 		waveform.append(waveformSegment);
@@ -17,32 +17,32 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	const numberOfPanels = panelCount(screen.height);
 	const digits = Math.max(2, String(numberOfPanels).length);
 
-	for (let i = 0; i < numberOfPanels; i++){
+	for (let i = 0; i < numberOfPanels; i++) {
 		const panelOne = document.createElement('div');
 		const panelTwo = document.createElement('div');
 		const prefix = String(i + 1).padStart(digits, 0);
 		let paletteOne;
 		let paletteTwo;
 
-		if (i < 2){
+		if (i < 2) {
 			paletteOne = ['light-blue', 'dark-blue'];
 			paletteTwo = ['light-blue', 'dark-blue'];
-		} else if (i === 2){
+		} else if (i === 2) {
 			paletteOne = ['light-blue', 'dark-blue'];
 			paletteTwo = ['light-blue', 'light-gray'];
-		} else if (i === 3){
+		} else if (i === 3) {
 			paletteOne = ['dark-blue', 'light-gray'];
 			paletteTwo = ['light-blue', 'dark-blue'];
-		} else if (i % 7 === 1 || i % 7 === 3){
+		} else if (i % 7 === 1 || i % 7 === 3) {
 			paletteOne = ['light-gray', 'dark-gray'];
 			paletteTwo = ['light-blue', 'dark-blue'];
-		} else if (i % 7 === 2 || i % 7 === 4 || i % 7 === 5){
+		} else if (i % 7 === 2 || i % 7 === 4 || i % 7 === 5) {
 			paletteOne = ['light-blue', 'dark-blue'];
 			paletteTwo = ['light-blue', 'dark-blue'];
-		} else if (i % 7 === 6){
+		} else if (i % 7 === 6) {
 			paletteOne = ['light-blue', 'dark-blue'];
 			paletteTwo = ['light-gray', 'dark-gray'];
-		} else if (!(i % 7)){
+		} else if (!(i % 7)) {
 			paletteOne = ['light-gray', 'dark-gray'];
 			paletteTwo = ['light-gray', 'dark-gray'];
 		}
@@ -67,15 +67,15 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	const cascade = document.createElement('table');
 	cascade.classList.add('cascade');
 
-	for (let i = 0; i < 7; i++){
+	for (let i = 0; i < 7; i++) {
 		const row = document.createElement('tr');
-		for (let c = 0; c < 35; c++){
+		for (let c = 0; c < (screen.width / 34); c++) {
 			const cell = document.createElement('td');
 			let n;
 
-			if (r(100) < 5 || c === 1){
+			if (r(100) < 5 || c === 1) {
 				n = '';
-			} else if (r(100) < 40){
+			} else if (r(100) < 40) {
 				n = String(r(10000000));
 			} else {
 				n = String(r(1000));
@@ -221,22 +221,22 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	contentArea.append(pageHeading, parserOutput);
 	document.body.append(contentArea);
 
-	function beep0(){
+	function beep0() {
 		const beepZero = new Audio('/lcars-database/resources/beep-0.mp3');
 		beepZero.play();
 	}
 
-	function beep1(){
+	function beep1() {
 		const beepOne = new Audio('/lcars-database/resources/beep-1.mp3');
 		beepOne.play();
 	}
 
-	function beep2(){
+	function beep2() {
 		const beepTwo = new Audio('/lcars-database/resources/beep-2.mp3');
 		beepTwo.play();
 	}
 
-	function stardateCalculator(selector){
+	function stardateCalculator(selector) {
 		document.querySelectorAll(selector).forEach(stardate => {
 			const date = selector === '.stardate' ? new Date(stardate.getAttribute('data-date')).getTime() : new Date().getTime();
 			stardate.innerHTML = Math.round(Math.log(date + 432043200000000000000) / Math.log(1.0000001));
@@ -247,22 +247,32 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	stardateCalculator('.currentStardate');
 	setInterval(stardateCalculator, 1000, '.currentStardate');
 
-	function r(i){
+	function r(i) {
 		return Math.floor(Math.random() * i);
 	}
 
-	function panelCount(verticalSpace){
+	function panelCount(verticalSpace) {
 		return Math.floor((verticalSpace - 8) / 136);
 	}
 
-	function updatePanels(){
+	function updatePanels() {
 		const visiblePanelCount = panelCount(innerHeight);
 		const panels = document.querySelectorAll('.panel');
-		for (let i = 0; i < numberOfPanels * 2; i++){
-			if (i < visiblePanelCount * 2){
+		const cascadeCells = document.querySelectorAll('.cascade td');
+
+		for (let i = 0; i < panels.length; i++) {
+			if (i < visiblePanelCount * 2) {
 				panels[i].classList.remove('hidden');
 			} else {
 				panels[i].classList.add('hidden');
+			}
+		}
+
+		for (let i = 0; i < cascadeCells.length; i++) {
+			if (i % (cascadeCells.length / 7) < innerWidth / 34) {
+				cascadeCells[i].classList.remove('hidden');
+			} else {
+				cascadeCells[i].classList.add('hidden');
 			}
 		}
 	}
