@@ -74,14 +74,11 @@ span#byline {
 	text-align: right;
 	display: block;
 }
-div.scrollbox {
+.scrollbox {
 	overflow: auto;
-	position: fixed;
-	top: 310px;
-	bottom: 70px;
-	left: 775px;
-	right: 5px;
 	padding-right: 30px;
+	grid-column: 5 / span 3;
+	grid-row: 6 / span 7;
 }
 div.wrap {
 	border-top: 20px solid #6d748c;
@@ -327,38 +324,38 @@ div.blink-fast {
 
 /* Bars */
 .bar {
-	height: 20px;
-	position: fixed;
-	left: 740px;
-	width: 105px;
+	height: 1em;
+	position: absolute;
+	left: 50em;
+	width: 6em;
 }
 .number-one {
-	top: 240px;
+	top: 17em;
 }
 .number-two {
-	top: 265px;
+	top: 18.5em;
 }
 .bar-break {
-	height: 45px;
-	position: fixed;
-	top: 240px;
-	left: 850px;
-	width: 50px;
+	height: 2.5em;
+	position: absolute;
+	top: 17em;
+	left: 56.5em;
+	width: 3em;
 }
 .bar-continued {
-	height: 20px;
-	position: fixed;
-	left: 905px;
-	right: 5px;
+	height: 1em;
+	position: absolute;
+	left: 60em;
+	right: 0.5em;
 }
 .marker {
-	height: 25px;
-	position: fixed;
-	top: 250px;
-	left: 905px;
-	width: 200px;
-	background: #000000;
-	border-radius: 0 10px 10px 0;
+	height: 1.5em;
+	position: absolute;
+	top: 17.5em;
+	left: 60em;
+	width: 12em;
+	background-color: #000000;
+	border-radius: 0 0.75em 0.75em 0;
 }
 
 /* Headers */
