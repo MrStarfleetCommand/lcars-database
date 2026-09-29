@@ -269,7 +269,7 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 		}
 
 		for (let i = 0; i < cascadeCells.length; i++) {
-			if (i % (cascadeCells.length / 7) < (innerWidth - 1216) / 36) {
+			if (i % (cascadeCells.length / 7) < (innerWidth - 1216) / 40) {
 				cascadeCells[i].classList.remove('hidden');
 			} else {
 				cascadeCells[i].classList.add('hidden');
