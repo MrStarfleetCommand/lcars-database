@@ -228,13 +228,6 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 		marker
 	);
 
-	const legalities = document.createElement('a');
-	legalities.href = '/lcars-database/legalities';
-	legalities.classList.add('left-facing', 'copyrights', 'button', 'red');
-	legalities.addEventListener('click', beep1);
-	legalities.append('Legalities');
-	document.body.append(legalities);
-
 	const contentArea = document.createElement('div');
 	const pageHeading = document.createElement('h2');
 	const parserOutput = document.createElement('div');
@@ -246,6 +239,13 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	contentArea.classList.add('content-area', 'scrollbox');
 	contentArea.append(pageHeading, parserOutput);
 	document.body.append(contentArea);
+
+	const legalities = document.createElement('a');
+	legalities.href = '/lcars-database/legalities';
+	legalities.classList.add('left-facing', 'copyrights', 'button', 'red');
+	legalities.addEventListener('click', beep1);
+	legalities.append('Legalities');
+	document.body.append(legalities);
 
 	function beep0() {
 		const beepZero = new Audio('/lcars-database/resources/beep-0.mp3');
