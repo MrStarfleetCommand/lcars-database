@@ -1,5 +1,6 @@
 import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 (async () => {
+	const sidebar = document.createElement('div');
 	const waveformWrapper = document.createElement('div');
 	const waveform = document.createElement('div');
 	waveformWrapper.classList.add('waveform-wrapper');
@@ -12,7 +13,94 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	}
 
 	waveformWrapper.append(waveform);
-	document.body.append(waveformWrapper);
+
+	const sidebar1 = document.createElement('div');
+	const sidebar2 = document.createElement('div');
+	const sidebar3 = document.createElement('div');
+	const sidebar4 = document.createElement('div');
+	const sidebar5 = document.createElement('div');
+	const sidebar6 = document.createElement('div');
+	const sidebar7 = document.createElement('div');
+	const sidebar8 = document.createElement('div');
+	const sidebar9 = document.createElement('div');
+	const sidebar10 = document.createElement('div');
+	const sidebar11 = document.createElement('div');
+	const sidebar12 = document.createElement('div');
+
+	sidebar1.classList.add('button', 'left-facing', 'red');
+	sidebar2.classList.add('button', 'square', 'border-button');
+	sidebar3.classList.add('button', 'left-facing', 'light-gray');
+	sidebar4.classList.add('button', 'square', 'border-button');
+	sidebar5.classList.add('button', 'left-facing', 'dark-blue');
+	sidebar6.classList.add('button', 'square', 'border-button-cyan');
+	sidebar7.classList.add('button', 'left-facing', 'red', 'blink-slow');
+	sidebar8.classList.add('button', 'right-facing', 'light-gray');
+	sidebar9.classList.add('button', 'left-facing', 'light-blue', 'blink-fast');
+	sidebar10.classList.add('button', 'right-facing', 'red');
+	sidebar11.classList.add('button', 'left-facing', 'dark-gray');
+	sidebar12.classList.add('button', 'right-facing', 'dark-blue');
+
+	sidebar1.addEventListener('click', beep0);
+	sidebar2.addEventListener('click', beep2);
+	sidebar3.addEventListener('click', beep0);
+	sidebar4.addEventListener('click', beep2);
+	sidebar5.addEventListener('click', beep0);
+	sidebar6.addEventListener('click', beep1);
+	sidebar7.addEventListener('click', beep0);
+	sidebar8.addEventListener('click', beep0);
+	sidebar9.addEventListener('click', beep0);
+	sidebar10.addEventListener('click', beep0);
+	sidebar11.addEventListener('click', beep0);
+	sidebar12.addEventListener('click', beep0);
+
+	sidebar1.append('03-975683');
+	sidebar2.append('03-975683');
+	sidebar3.append('04-765466');
+	sidebar4.append('04-765466');
+	sidebar5.append('05-224353');
+	sidebar6.append('05-224353');
+	sidebar7.append('03-975683');
+	sidebar8.append('03-975683');
+	sidebar9.append('04-765466');
+	sidebar10.append('04-765466');
+	sidebar11.append('05-224353');
+	sidebar12.append('05-224353');
+
+	const versionInfo = document.createElement('div');
+	const ul = document.createElement('ul');
+	const opVersion = document.createElement('li');
+	const updated = document.createElement('li');
+	const latestVersion = document.createElement('li');
+	const latestRelease = document.createElement('li');
+	const curOpLoad = document.createElement('li');
+
+	versionInfo.classList.add('version-info');
+	opVersion.append('Operating Version: v104.04.720');
+	updated.append('Last Updated: 2391-01-01T19:54:17Z (68024.71)');
+	latestVersion.append('Latest Version: v118.77.022');
+	latestRelease.append('Latest Release: 2405-07-20T22:17:40Z (82566.00)');
+	curOpLoad.append('Current Operational Load: 6 Kiloquads');
+	ul.append(opVersion, updated, latestVersion, latestRelease, curOpLoad);
+	versionInfo.append(ul);
+
+	sidebar.id = 'sidebar';
+	sidebar.append(
+		waveformWrapper,
+		sidebar1,
+		sidebar2,
+		sidebar3,
+		sidebar4,
+		sidebar5,
+		sidebar6,
+		versionInfo,
+		sidebar7,
+		sidebar8,
+		sidebar9,
+		sidebar10,
+		sidebar11,
+		sidebar12
+	);
+	document.body.append(sidebar);
 
 	const numberOfPanels = panelCount(screen.height);
 	const digits = Math.max(2, String(numberOfPanels).length);
@@ -131,83 +219,14 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	barContinuedTwo.classList.add('bar-continued', 'number-two', 'light-blue');
 	marker.classList.add('marker');
 
-	document.body.append(barOne, barTwo, barBreak, barContinuedOne, barContinuedTwo, marker);
-
-	const sidebar = document.createElement('div');
-	const sidebar1 = document.createElement('div');
-	const sidebar2 = document.createElement('div');
-	const sidebar3 = document.createElement('div');
-	const sidebar4 = document.createElement('div');
-	const sidebar5 = document.createElement('div');
-	const sidebar6 = document.createElement('div');
-	const sidebar7 = document.createElement('div');
-	const sidebar8 = document.createElement('div');
-	const sidebar9 = document.createElement('div');
-	const sidebar10 = document.createElement('div');
-	const sidebar11 = document.createElement('div');
-	const sidebar12 = document.createElement('div');
-
-	const versionInfo = document.createElement('div');
-	const ul = document.createElement('ul');
-	const opVersion = document.createElement('li');
-	const updated = document.createElement('li');
-	const latestVersion = document.createElement('li');
-	const latestRelease = document.createElement('li');
-	const curOpLoad = document.createElement('li');
-
-	versionInfo.classList.add('version-info');
-	opVersion.append('Operating Version: v104.04.720');
-	updated.append('Last Updated: 2391-01-01T19:54:17Z (68024.71)');
-	latestVersion.append('Latest Version: v118.77.022');
-	latestRelease.append('Latest Release: 2405-07-20T22:17:40Z (82566.00)');
-	curOpLoad.append('Current Operational Load: 6 Kiloquads');
-
-	ul.append(opVersion, updated, latestVersion, latestRelease, curOpLoad);
-	versionInfo.append(ul);
-
-	sidebar.id = 'sidebar';
-
-	sidebar1.classList.add('button', 'left-facing', 'red');
-	sidebar2.classList.add('button', 'square', 'border-button');
-	sidebar3.classList.add('button', 'left-facing', 'light-gray');
-	sidebar4.classList.add('button', 'square', 'border-button');
-	sidebar5.classList.add('button', 'left-facing', 'dark-blue');
-	sidebar6.classList.add('button', 'square', 'border-button-cyan');
-	sidebar7.classList.add('button', 'left-facing', 'red', 'blink-slow');
-	sidebar8.classList.add('button', 'right-facing', 'light-gray');
-	sidebar9.classList.add('button', 'left-facing', 'light-blue', 'blink-fast');
-	sidebar10.classList.add('button', 'right-facing', 'red');
-	sidebar11.classList.add('button', 'left-facing', 'dark-gray');
-	sidebar12.classList.add('button', 'right-facing', 'dark-blue');
-
-	sidebar1.addEventListener('click', beep0);
-	sidebar2.addEventListener('click', beep2);
-	sidebar3.addEventListener('click', beep0);
-	sidebar4.addEventListener('click', beep2);
-	sidebar5.addEventListener('click', beep0);
-	sidebar6.addEventListener('click', beep1);
-	sidebar7.addEventListener('click', beep0);
-	sidebar8.addEventListener('click', beep0);
-	sidebar9.addEventListener('click', beep0);
-	sidebar10.addEventListener('click', beep0);
-	sidebar11.addEventListener('click', beep0);
-	sidebar12.addEventListener('click', beep0);
-
-	sidebar1.append('03-975683');
-	sidebar2.append('03-975683');
-	sidebar3.append('04-765466');
-	sidebar4.append('04-765466');
-	sidebar5.append('05-224353');
-	sidebar6.append('05-224353');
-	sidebar7.append('03-975683');
-	sidebar8.append('03-975683');
-	sidebar9.append('04-765466');
-	sidebar10.append('04-765466');
-	sidebar11.append('05-224353');
-	sidebar12.append('05-224353');
-
-	sidebar.append(sidebar1, sidebar2, sidebar3, sidebar4, sidebar5, sidebar6, versionInfo, sidebar7, sidebar8, sidebar9, sidebar10, sidebar11, sidebar12);
-	document.body.append(sidebar);
+	document.body.append(
+		barOne,
+		barTwo,
+		barBreak,
+		barContinuedOne,
+		barContinuedTwo,
+		marker
+	);
 
 	const legalities = document.createElement('a');
 	legalities.href = '/lcars-database/legalities';
