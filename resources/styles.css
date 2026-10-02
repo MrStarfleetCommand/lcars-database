@@ -243,8 +243,8 @@ div.wrap {
 /* Panel group */
 #panel-group {
 	display: grid;
-	gap: 0.5em;
-	grid-template-columns: repeat(2, 12em);
+	gap: inherit;
+	grid-template-columns: subgrid;
 	grid-auto-rows: 4em;
 	grid-column: 3 / span 2;
 	grid-row: 1 / -1;
