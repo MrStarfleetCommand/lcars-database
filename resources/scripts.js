@@ -187,7 +187,7 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	const header3 = document.createElement('a');
 	const header4 = document.createElement('a');
 
-	headerButtonGroup.id = 'header-button-gruop';
+	headerButtonGroup.id = 'header-button-group';
 	header1.classList.add('button', 'dark-blue');
 	header2.classList.add('button', 'light-blue');
 	header3.classList.add('button', 'red');
