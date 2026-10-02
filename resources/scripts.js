@@ -52,8 +52,8 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 		const colorOne = paletteOne[r(paletteOne.length)];
 		const colorTwo = paletteTwo[r(paletteTwo.length)];
 
-		panelOne.classList.add(colorOne, 'panel', 'box-with-label', 'panel-left');
-		panelTwo.classList.add(colorTwo, 'panel', 'box-with-label', 'panel-right');
+		panelOne.classList.add(colorOne, 'panel', 'panel-left');
+		panelTwo.classList.add(colorTwo, 'panel', 'panel-right');
 		panelOne.innerText = i === 0 ? 'LCARS 40274' : prefix + '-' + String(r(1000000)).padStart(6, 0);
 		panelTwo.innerText = i === 0 ? 'LCARS 40274' : prefix + '-' + String(r(1000000)).padStart(6, 0);
 		panelGroup.append(panelOne, panelTwo);
@@ -98,10 +98,10 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	const header3 = document.createElement('a');
 	const header4 = document.createElement('a');
 
-	header1.classList.add('button', 'box-with-label', 'header-one', 'dark-blue');
-	header2.classList.add('button', 'box-with-label', 'header-two', 'light-blue');
-	header3.classList.add('button', 'box-with-label', 'header-three', 'red');
-	header4.classList.add('button', 'box-with-label', 'header-four', 'light-gray');
+	header1.classList.add('button', 'dark-blue');
+	header2.classList.add('button', 'light-blue');
+	header3.classList.add('button', 'red');
+	header4.classList.add('button', 'light-gray');
 	header1.href = '/lcars-database/';
 	header2.href = '/lcars-database/timeline/';
 	header3.href = '/lcars-database/trek-analyzed/';
@@ -133,6 +133,7 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 
 	document.body.append(barOne, barTwo, barBreak, barContinuedOne, barContinuedTwo, marker);
 
+	const sidebar = document.createElement('div');
 	const sidebar1 = document.createElement('div');
 	const sidebar2 = document.createElement('div');
 	const sidebar3 = document.createElement('div');
@@ -145,47 +146,6 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	const sidebar10 = document.createElement('div');
 	const sidebar11 = document.createElement('div');
 	const sidebar12 = document.createElement('div');
-
-	sidebar1.classList.add('button', 'box-with-label', 'sidebar-1', 'left-facing', 'red');
-	sidebar2.classList.add('button', 'box-with-label', 'sidebar-2', 'left-facing', 'light-gray');
-	sidebar3.classList.add('button', 'box-with-label', 'sidebar-3', 'left-facing', 'dark-blue');
-	sidebar4.classList.add('button', 'box-with-label', 'sidebar-4', 'square', 'border-button');
-	sidebar5.classList.add('button', 'box-with-label', 'sidebar-5', 'square', 'border-button');
-	sidebar6.classList.add('button', 'box-with-label', 'sidebar-6', 'square', 'border-button-cyan');
-	sidebar7.classList.add('button', 'box-with-label', 'sidebar-7', 'left-facing', 'red', 'blink-slow');
-	sidebar8.classList.add('button', 'box-with-label', 'sidebar-8', 'left-facing', 'light-blue', 'blink-fast');
-	sidebar9.classList.add('button', 'box-with-label', 'sidebar-9', 'left-facing', 'dark-gray');
-	sidebar10.classList.add('button', 'box-with-label', 'sidebar-10', 'right-facing', 'light-gray');
-	sidebar11.classList.add('button', 'box-with-label', 'sidebar-11', 'right-facing', 'red');
-	sidebar12.classList.add('button', 'box-with-label', 'sidebar-12', 'right-facing', 'dark-blue');
-
-	sidebar1.addEventListener('click', beep0);
-	sidebar2.addEventListener('click', beep0);
-	sidebar3.addEventListener('click', beep0);
-	sidebar4.addEventListener('click', beep2);
-	sidebar5.addEventListener('click', beep2);
-	sidebar6.addEventListener('click', beep1);
-	sidebar7.addEventListener('click', beep0);
-	sidebar8.addEventListener('click', beep0);
-	sidebar9.addEventListener('click', beep0);
-	sidebar10.addEventListener('click', beep0);
-	sidebar11.addEventListener('click', beep0);
-	sidebar12.addEventListener('click', beep0);
-
-	sidebar1.append('03-975683');
-	sidebar2.append('04-765466');
-	sidebar3.append('05-224353');
-	sidebar4.append('03-975683');
-	sidebar5.append('04-765466');
-	sidebar6.append('05-224353');
-	sidebar7.append('03-975683');
-	sidebar8.append('04-765466');
-	sidebar9.append('05-224353');
-	sidebar10.append('03-975683');
-	sidebar11.append('04-765466');
-	sidebar12.append('05-224353');
-
-	document.body.append(sidebar1, sidebar2, sidebar3, sidebar4, sidebar5, sidebar6, sidebar7, sidebar8, sidebar9, sidebar10, sidebar11, sidebar12);
 
 	const versionInfo = document.createElement('div');
 	const ul = document.createElement('ul');
@@ -204,11 +164,54 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 
 	ul.append(opVersion, updated, latestVersion, latestRelease, curOpLoad);
 	versionInfo.append(ul);
-	document.body.append(versionInfo);
+
+	sidebar.id = 'sidebar';
+
+	sidebar1.classList.add('button', 'left-facing', 'red');
+	sidebar2.classList.add('button', 'square', 'border-button');
+	sidebar3.classList.add('button', 'left-facing', 'light-gray');
+	sidebar4.classList.add('button', 'square', 'border-button');
+	sidebar5.classList.add('button', 'left-facing', 'dark-blue');
+	sidebar6.classList.add('button', 'square', 'border-button-cyan');
+	sidebar7.classList.add('button', 'left-facing', 'red', 'blink-slow');
+	sidebar8.classList.add('button', 'right-facing', 'light-gray');
+	sidebar9.classList.add('button', 'left-facing', 'light-blue', 'blink-fast');
+	sidebar10.classList.add('button', 'right-facing', 'red');
+	sidebar11.classList.add('button', 'left-facing', 'dark-gray');
+	sidebar12.classList.add('button', 'right-facing', 'dark-blue');
+
+	sidebar1.addEventListener('click', beep0);
+	sidebar2.addEventListener('click', beep2);
+	sidebar3.addEventListener('click', beep0);
+	sidebar4.addEventListener('click', beep2);
+	sidebar5.addEventListener('click', beep0);
+	sidebar6.addEventListener('click', beep1);
+	sidebar7.addEventListener('click', beep0);
+	sidebar8.addEventListener('click', beep0);
+	sidebar9.addEventListener('click', beep0);
+	sidebar10.addEventListener('click', beep0);
+	sidebar11.addEventListener('click', beep0);
+	sidebar12.addEventListener('click', beep0);
+
+	sidebar1.append('03-975683');
+	sidebar2.append('03-975683');
+	sidebar3.append('04-765466');
+	sidebar4.append('04-765466');
+	sidebar5.append('05-224353');
+	sidebar6.append('05-224353');
+	sidebar7.append('03-975683');
+	sidebar8.append('03-975683');
+	sidebar9.append('04-765466');
+	sidebar10.append('04-765466');
+	sidebar11.append('05-224353');
+	sidebar12.append('05-224353');
+
+	sidebar.append(sidebar1, sidebar2, sidebar3, sidebar4, sidebar5, sidebar6, versionInfo, sidebar7, sidebar8, sidebar9, sidebar10, sidebar11, sidebar12);
+	document.body.append(sidebar);
 
 	const legalities = document.createElement('a');
 	legalities.href = '/lcars-database/legalities';
-	legalities.classList.add('left-facing', 'copyrights', 'button', 'box-with-label', 'red');
+	legalities.classList.add('left-facing', 'copyrights', 'button', 'red');
 	legalities.addEventListener('click', beep1);
 	legalities.append('Legalities');
 	document.body.append(legalities);
