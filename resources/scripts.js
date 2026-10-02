@@ -16,6 +16,8 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 
 	const numberOfPanels = panelCount(screen.height);
 	const digits = Math.max(2, String(numberOfPanels).length);
+	const panelGroup = document.createElement('div');
+	panelGroup.id = 'panel-group';
 
 	for (let i = 0; i < numberOfPanels; i++) {
 		const panelOne = document.createElement('div');
@@ -54,8 +56,10 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 		panelTwo.classList.add(colorTwo, 'panel', 'box-with-label', 'panel-right');
 		panelOne.innerText = i === 0 ? 'LCARS 40274' : prefix + '-' + String(r(1000000)).padStart(6, 0);
 		panelTwo.innerText = i === 0 ? 'LCARS 40274' : prefix + '-' + String(r(1000000)).padStart(6, 0);
-		document.body.append(panelOne, panelTwo);
+		panelGroup.append(panelOne, panelTwo);
 	}
+
+	document.body.append(panelGroup);
 
 	const siteHeading = document.createElement('h1');
 	siteHeading.innerText = 'LCARS Database';
