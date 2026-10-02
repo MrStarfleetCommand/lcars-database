@@ -107,7 +107,8 @@ ul li::before {
 p.attribution {
 	text-align: right;
 }
-.box-with-label {
+.button,
+.panel {
 	display: flex;
 	justify-content: end;
 	align-items: end;
