@@ -77,8 +77,8 @@ math {
 }
 blockquote {
 	margin: 0;
-	border-left: 5px solid var(--border-color-dark-blue);
-	padding-left: 20px;
+	border-left: 0.25em solid var(--border-color-dark-blue);
+	padding-left: 1.25em;
 }
 sup {
 	font-size: 0.75em;
@@ -91,13 +91,13 @@ ul {
 }
 ul li {
 	position: relative;
-	padding-bottom: 10px;
-	padding-left: 45px;
+	padding-bottom: 0.5em;
+	padding-left: 2.75em;
 }
 ul li::before {
 	content: '';
-	width: 30px;
-	height: 20px;
+	width: 2em;
+	height: 1.25em;
 	border-radius: 50%;
 	background-color: var(--background-color-red);
 	position: absolute;
@@ -119,19 +119,19 @@ span#byline {
 }
 .scrollbox {
 	overflow: auto;
-	padding-right: 30px;
+	padding-right: 2em;
 	grid-column: 5 / -1;
 	grid-row: 6 / -2;
 }
 div.wrap {
-	border-top: 20px solid var(--border-color-dark-blue);
-	border-left: 147px solid var(--border-color-dark-blue);
-	border-bottom: 20px solid var(--border-color-dark-blue);
-	border-radius: 20px 0 0 20px;
-	margin-top: 20px;
+	border-top: 1.25em solid var(--border-color-dark-blue);
+	border-left: 9em solid var(--border-color-dark-blue);
+	border-bottom: 1.25em solid var(--border-color-dark-blue);
+	border-radius: 1.25em 0 0 1.25em;
+	margin-top: 1.25em;
 	display: flex;
 	flex-wrap: wrap;
-	padding: 2.5px;
+	padding: 0.2em;
 }
 .version-info {
 	grid-column: 1 / span 2;
@@ -368,7 +368,7 @@ div.wrap {
 	animation-delay: 0.7s;
 }
 .cascade td {
-	min-width: 20px;
+	min-width: 2em;
 }
 
 /* Buttons */
@@ -386,14 +386,14 @@ div.wrap {
 	border-radius: 0;
 }
 .border-button {
-	border: 3px solid var(--border-color-red);
+	border: 0.2em solid var(--border-color-red);
 }
 .border-button:hover {
 	border-color: var(--border-color-red--hover);
 	color: var(--color-black--hover);
 }
 .border-button-cyan {
-	border: 3px solid #00aacc;
+	border: 0.2em solid #00aacc;
 	color: #00aacc;
 }
 .border-button-cyan:hover {
@@ -417,7 +417,7 @@ div.wrap {
 	grid-row: 3;
 }
 div.scrollbox a.button {
-	margin: 2.5px;
+	margin: 0.2em;
 }
 .sidebar-1 {
 	grid-column: 1;
@@ -541,7 +541,7 @@ h1 {
 }
 h2 {
 	font-size: 3em;
-	margin: 0 0 10px 0;
+	margin: 0 0 0.2em 0;
 	text-align: right;
 }
 h3 {
