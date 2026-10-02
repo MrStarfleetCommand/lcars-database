@@ -98,7 +98,7 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 		sidebar9,
 		sidebar10,
 		sidebar11,
-		sidebar12
+		sidebar12,
 	);
 	document.body.append(sidebar);
 
@@ -181,11 +181,13 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	updatePanels();
 	addEventListener('resize', updatePanels);
 
+	const headerButtonGroup = document.createElement('div');
 	const header1 = document.createElement('a');
 	const header2 = document.createElement('a');
 	const header3 = document.createElement('a');
 	const header4 = document.createElement('a');
 
+	headerButtonGroup.id = 'header-button-gruop';
 	header1.classList.add('button', 'dark-blue');
 	header2.classList.add('button', 'light-blue');
 	header3.classList.add('button', 'red');
@@ -203,8 +205,10 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	header3.append('Trek Analyzed');
 	header4.append('Trek Lore');
 
-	document.body.append(header1, header2, header3, header4);
+	headerButtonGroup.append(header1, header2, header3, header4);
+	document.body.append(headerButtonGroup);
 
+	const bar = document.createElement('div');
 	const barOne = document.createElement('div');
 	const barTwo = document.createElement('div');
 	const barBreak = document.createElement('div');
@@ -212,21 +216,22 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 	const barContinuedTwo = document.createElement('div');
 	const marker = document.createElement('div');
 
+	bar.id = 'bar';
 	barOne.classList.add('bar', 'number-one', 'dark-blue');
 	barTwo.classList.add('bar', 'number-two', 'dark-blue');
 	barBreak.classList.add('bar-break', 'light-gray');
 	barContinuedOne.classList.add('bar-continued', 'number-one', 'light-gray');
 	barContinuedTwo.classList.add('bar-continued', 'number-two', 'light-blue');
 	marker.classList.add('marker');
-
-	document.body.append(
+	bar.append(
 		barOne,
 		barTwo,
 		barBreak,
 		barContinuedOne,
 		barContinuedTwo,
-		marker
+		marker,
 	);
+	document.body.append(bar);
 
 	const contentArea = document.createElement('div');
 	const pageHeading = document.createElement('h2');

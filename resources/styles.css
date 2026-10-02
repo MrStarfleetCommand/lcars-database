@@ -144,6 +144,13 @@ div.wrap {
 .version-info {
 	grid-column: span 2;
 }
+#header-button-group {
+	display: grid;
+	grid-template-columns: subgrid;
+	grid-template-rows: subgrid;
+	grid-column: -3 / span 2;
+	grid-row: span 2;
+}
 :root .hidden {
 	display: none;
 }
@@ -296,7 +303,7 @@ div.wrap {
 	gap: inherit;
 	grid-template-columns: subgrid;
 	grid-template-rows: repeat(round(down, calc(((100vh - 0.5em) / 4.5em) - 1)), 4em) auto;
-	grid-column: span 2;
+	grid-column: 3 / span 2;
 	grid-row: 1 / -1;
 }
 .panel {
@@ -338,6 +345,7 @@ div.wrap {
 	}
 }
 .cascade {
+	grid-column: 5;
 	grid-row: span 2;
 	font-size: 0.65em;
 	text-align: right;
@@ -410,8 +418,8 @@ div.scrollbox a.button {
 	margin: 0.2em;
 }
 .copyrights {
-	grid-column: 7;
-	grid-row: 11;
+	grid-column: -2;
+	grid-row: -2;
 }
 div.blink-slow {
 	animation: blink 9s infinite;
@@ -437,36 +445,41 @@ div.blink-fast {
 }
 
 /* Bars */
+#bar {
+	grid-column: 5 / -1;
+	grid-row: span 2;
+	position: relative;
+}
 .bar {
 	height: 1em;
 	position: absolute;
-	left: 50em;
+	left: -0.5em;
 	width: 6em;
 }
 .number-one {
-	top: 17em;
+	top: 3em;
 }
 .number-two {
-	top: 18.5em;
+	top: 4.5em;
 }
 .bar-break {
 	height: 2.5em;
 	position: absolute;
-	top: 17em;
-	left: 56.5em;
+	top: 3em;
+	left: 6em;
 	width: 3em;
 }
 .bar-continued {
 	height: 1em;
 	position: absolute;
-	left: 60em;
-	right: 0.5em;
+	left: 9.5em;
+	right: 0;
 }
 .marker {
 	height: 1.5em;
 	position: absolute;
-	top: 17.5em;
-	left: 60em;
+	top: 3.5em;
+	left: 9.5em;
 	width: 12em;
 	background-color: var(--background-color-black);
 	border-radius: 0 0.75em 0.75em 0;
@@ -477,7 +490,7 @@ h1 {
 	font-size: 4em;
 	line-height: 1;
 	margin: 0;
-	grid-column: span 3;
+	grid-column: 5 / -1;
 	text-align: right;
 }
 h2 {
