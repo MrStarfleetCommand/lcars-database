@@ -306,26 +306,19 @@ div.wrap {
 	grid-column: 3;
 	grid-row: 1 / -1;
 }
-.panel-group + .panel-group {
+.panel-group:has(+ h1) {
 	grid-column: 4;
 }
 .panel {
 	grid-row: span 2;
 }
-.panel-left {
-	grid-column: 1;
-}
-.panel-right {
-	grid-column: 2;
-}
-.panel:nth-child(4) {
+.panel-group:has(+ h1) > :nth-child(2) {
 	border-radius: 0 0 0 2em;
 }
-.panel:nth-child(6) {
+.panel-group:has(+ h1) > :nth-child(3) {
 	border-radius: 2em 0 0 0;
 }
-.panel:nth-child(3),
-.panel:nth-child(4) {
+.panel:nth-child(2) {
 	align-items: start;
 }
 
