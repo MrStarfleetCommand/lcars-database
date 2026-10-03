@@ -551,7 +551,16 @@ div.scrollbox td {
 	border: 1px solid var(--border-color-red);
 }
 
-/* TODO: Add responsive formatting */
+/* Responsive formatting */
+@media (max-height: 57em) {
+	#sidebar,
+	#sidebar + .panel-group {
+		display: none;
+	}
+	body {
+		grid-template-columns: 0 0 0 12em auto repeat(2, 12em);
+	}
+}
 
 /* Print */
 @media print {
