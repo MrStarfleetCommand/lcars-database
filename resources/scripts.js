@@ -142,8 +142,8 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 		const colorOne = paletteOne[r(paletteOne.length)];
 		const colorTwo = paletteTwo[r(paletteTwo.length)];
 
-		panelOne.classList.add(colorOne, 'panel', 'panel-left');
-		panelTwo.classList.add(colorTwo, 'panel', 'panel-right');
+		panelOne.classList.add(colorOne, 'panel');
+		panelTwo.classList.add(colorTwo, 'panel');
 		panelOne.innerText = i === 0 ? 'LCARS 40274' : prefix + '-' + String(r(1000000)).padStart(6, 0);
 		panelTwo.innerText = i === 0 ? 'LCARS 40274' : prefix + '-' + String(r(1000000)).padStart(6, 0);
 		panelGroupOne.append(panelOne);
