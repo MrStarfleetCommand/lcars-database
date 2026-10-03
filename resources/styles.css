@@ -120,7 +120,7 @@ span#byline {
 }
 .scrollbox {
 	overflow: auto;
-	padding-right: 2em;
+	padding-inline: 2em;
 	grid-column: 5 / -1;
 	grid-row: 6 / -2;
 }
