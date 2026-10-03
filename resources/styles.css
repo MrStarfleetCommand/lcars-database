@@ -552,7 +552,7 @@ div.scrollbox td {
 }
 
 /* Responsive formatting */
-@media (max-height: 57em) {
+@media (max-height: 57em), (max-width: 113em) {
 	#sidebar,
 	#sidebar + .panel-group {
 		display: none;
