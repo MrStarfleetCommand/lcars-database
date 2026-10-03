@@ -298,13 +298,16 @@ div.wrap {
 }
 
 /* Panel group */
-#panel-group {
+.panel-group {
 	display: grid;
 	gap: inherit;
 	grid-template-columns: subgrid;
 	grid-template-rows: repeat(round(down, calc(((100vh - 0.5em) / 4.5em) - 1)), 4em) auto;
-	grid-column: 3 / span 2;
+	grid-column: 3;
 	grid-row: 1 / -1;
+}
+.panel-group + .panel-group {
+	grid-column: 4;
 }
 .panel {
 	grid-row: span 2;
