@@ -294,11 +294,13 @@ import {txtToHtml, htmlToTxt, fetchSourceText} from '/parser.js';
 		const panels = document.querySelectorAll('.panel');
 		const cascadeCells = document.querySelectorAll('.cascade td');
 
-		for (let i = 0; i < panels.length; i++) {
-			if (i < visiblePanelCount * 2) {
+		for (let i = 0; i < panels.length / 2; i++) {
+			if (i < visiblePanelCount) {
 				panels[i].classList.remove('hidden');
+				panels[i + panels.length / 2].classList.remove('hidden');
 			} else {
 				panels[i].classList.add('hidden');
+				panels[i + panels.length / 2].classList.add('hidden');
 			}
 		}
 
